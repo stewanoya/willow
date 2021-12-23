@@ -3,12 +3,13 @@
 DROP TABLE IF EXISTS journals CASCADE;
 
 
-CREATE TABLE users (
+CREATE TABLE journals (
   id SERIAL PRIMARY KEY NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  organization_name VARCHAR(255) NOT NULL,
-  phone VARCHAR(15),
-  therapist BOOLEAN NOT NULL
+  scale INTEGER NOT NULL,
+  title VARCHAR(255),
+  entry TEXT,
+  date DATE DEFAULT CURRENT_DATE,
+  student_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  choices_id INTEGER REFERENCES choices(id) ON DELETE CASCADE
 );
 
